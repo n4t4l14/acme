@@ -2,6 +2,10 @@
 
 namespace App\Http\V1\Controllers\Person;
 use App\Http\V1\Controllers\ApiV1Controller;
+use App\Http\V1\Requests\CreatePersonFormRequest;
+use App\UseCases\CreatePersonUseCase;
+use Illuminate\Http\JsonResponse;
+use Throwable;
 
 /**
  * Class CreatePersonController
@@ -9,8 +13,44 @@ use App\Http\V1\Controllers\ApiV1Controller;
  */
 class CreatePersonController extends ApiV1Controller
 {
-    public function __invoke()
+    /**
+     * @var CreatePersonUseCase
+     */
+    private $createPersonUseCase;
+
+    /**
+     * @param CreatePersonUseCase $createPersonUseCase
+     */
+    public function __construct(CreatePersonUseCase $createPersonUseCase)
     {
-        return 'hola desde controlador de creacion de persona';
+        $this->createPersonUseCase = $createPersonUseCase;
+    }
+
+    /**
+     * @param CreatePersonFormRequest $request
+     * @return JsonResponse
+     */
+    public function __invoke(CreatePersonFormRequest $request): JsonResponse
+    {
+        dd('aqui');
+        try {
+            $person = $this->createPersonUseCase->create(
+                $request->get('identificationNumber'),
+                $request->get('firstName'),
+                $request->get('secondName'),
+                $request->get('surnames'),
+                $request->get('address'),
+                $request->get('phoneNumber'),
+                $request->get('city'),
+                $request->get('role'),
+            );
+
+            return response()->json([
+                'data' => $person->toArray()
+            ]);
+        } catch (Throwable $exception) {
+            return $this->responseGeneralError($exception);
+        }
+
     }
 }
