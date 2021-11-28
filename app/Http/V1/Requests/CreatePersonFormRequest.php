@@ -3,6 +3,7 @@
 namespace App\Http\V1\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 /**
  * Class CreatePersonFormRequest
@@ -34,7 +35,9 @@ class CreatePersonFormRequest extends FormRequest
             'address' => 'required',
             'phone_number' => 'required',
             'city' => 'required',
-            'role' => 'required',
+            'role' => ['required',
+                        Rule::in(['Conductor', 'Propietario']),
+            ]
         ];
     }
 
@@ -51,6 +54,7 @@ class CreatePersonFormRequest extends FormRequest
             'phone_number.required' => 'El número de telefono es obligatorio',
             'city.required' => 'La ciudad es obligatoria',
             'role.required' => 'El rol es obligatorio',
+            'role.in' => 'El rol debe ser Conductor o Propietario'
         ];
 
     }

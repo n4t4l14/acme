@@ -32,15 +32,14 @@ class CreatePersonController extends ApiV1Controller
      */
     public function __invoke(CreatePersonFormRequest $request): JsonResponse
     {
-        dd('aqui');
         try {
             $person = $this->createPersonUseCase->create(
-                $request->get('identificationNumber'),
-                $request->get('firstName'),
-                $request->get('secondName'),
+                $request->get('identification_number'),
+                $request->get('first_name'),
+                $request->get('second_name'),
                 $request->get('surnames'),
                 $request->get('address'),
-                $request->get('phoneNumber'),
+                $request->get('phone_number'),
                 $request->get('city'),
                 $request->get('role'),
             );
@@ -49,6 +48,7 @@ class CreatePersonController extends ApiV1Controller
                 'data' => $person->toArray()
             ]);
         } catch (Throwable $exception) {
+            dd($exception);
             return $this->responseGeneralError($exception);
         }
 

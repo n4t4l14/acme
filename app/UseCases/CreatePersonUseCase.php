@@ -23,17 +23,18 @@ class CreatePersonUseCase
     /**
      * @param string $identificationNumber
      * @param string $firstName
-     * @param string $secondName
+     * @param string|null $secondName
      * @param string $surnames
      * @param string $address
      * @param string $phoneNumber
      * @param string $city
      * @param string $role
+     * @return Person
      */
     public function create(
         string $identificationNumber,
         string $firstName,
-        string $secondName,
+        ?string $secondName,
         string $surnames,
         string $address,
         string $phoneNumber,
