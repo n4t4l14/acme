@@ -27,10 +27,8 @@
                     <input type="text" class="form-control" id="first_name" required>
                 </div>
                 <div class="mb-3">
-                    <label for="second_name" class="form-label">
-                        <small class="text-danger">*</small> Segundo nombre
-                    </label>
-                    <input type="text" class="form-control" id="second_name" required>
+                    <label for="second_name" class="form-label">Segundo nombre</label>
+                    <input type="text" class="form-control" id="second_name">
                 </div>
                 <div class="mb-3">
                     <label for="surnames" class="form-label">

@@ -29,14 +29,15 @@ class CreateVehicleFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'plate' => 'required',
-            'color' => 'required',
-            'brand' => 'required',
-            'type' => ['required',
+            'data.attributes.plate' => 'required',
+            'data.attributes.color' => 'required',
+            'data.attributes.brand' => 'required',
+            'data.attributes.type' => [
+                'required',
                 Rule::in(['Particular', 'Publico']),
             ],
-            'driver_id' => 'required',
-            'owner_id' => 'required',
+            'data.attributes.driver_id' => 'required',
+            'data.attributes.owner_id' => 'required',
         ];
     }
 
@@ -46,13 +47,13 @@ class CreateVehicleFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'plate.required' => 'La placa del vehículo es obligatoria',
-            'color.required' => 'El color del vehículo es obligatorio',
-            'brand.required' => 'La marca del vehículo es obligatoria',
-            'type.required' => 'El tipo es obligatorio',
-            'type.in' => 'El tipo debe ser Particular o Publico',
-            'driver_id.required' => 'El conductor es obligatorio',
-            'owner_id.required' => 'El propietario es obligatorio',
+            'data.attributes.plate.required' => 'La placa del vehículo es obligatoria',
+            'data.attributes.color.required' => 'El color del vehículo es obligatorio',
+            'data.attributes.brand.required' => 'La marca del vehículo es obligatoria',
+            'data.attributes.type.required' => 'El tipo es obligatorio',
+            'data.attributes.type.in' => 'El tipo debe ser Particular o Publico',
+            'data.attributes.driver_id.required' => 'El conductor es obligatorio',
+            'data.attributes.owner_id.required' => 'El propietario es obligatorio',
         ];
 
     }

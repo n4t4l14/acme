@@ -1,4 +1,4 @@
-@extends('classic.layouts.generalLayout')
+    |@extends('classic.layouts.generalLayout')
 
 @section('page_content')
     <h3 class="text-muted">Crear Vehículo <i class="bi bi-truck text-primary"></i></h3>
@@ -34,9 +34,12 @@
                 </div>
                 <div class="mb-3">
                     <label for="type" class="form-label">
-                        <small class="text-danger">*</small> Tipo de vehículo
+                        <small class="text-danger">*</small> Conductor
                     </label>
-                    <input type="text" class="form-control" id="type" required>
+                    <select class="form-select" id="type" required>
+                        <option value="Particular">Particular</option>
+                        <option value="Publico">Público</option>
+                    </select>
                 </div>
 
                 <div class="mb-3">
@@ -44,6 +47,7 @@
                         <small class="text-danger">*</small> Conductor
                     </label>
                     <select class="form-select" id="driver_id" required>
+                        <option value="7">Miguel</option>
                     </select>
                 </div>
 
@@ -52,6 +56,7 @@
                         <small class="text-danger">*</small> Propietario
                     </label>
                     <select class="form-select" id="owner_id" required>
+                        <option value="6">Julieth</option>
                     </select>
                 </div>
             </div>
@@ -71,15 +76,18 @@
                 let responseAlert = $('#responseAlert');
                 let url = $(this).prop('action');
                 let data = {
-                    "type": "person",
-                    "attributes": {
-                        "plate": $('#plate').val(),
-                        "color": $('#color').val(),
-                        "brand": $('#brand').val(),
-                        "type": $('#type').val(),
-                        "driver_id": $('#driver_id').val(),
-                        "owner_id": $('#owner_id').val(),
+                    "data": {
+                        "type": "vehicle",
+                        "attributes": {
+                            "plate": $('#plate').val(),
+                            "color": $('#color').val(),
+                            "brand": $('#brand').val(),
+                            "type": $('#type').val(),
+                            "driver_id": $('#driver_id').val(),
+                            "owner_id": $('#owner_id').val(),
+                        }
                     }
+
                 };
 
                 $.ajax({
@@ -93,7 +101,7 @@
                         $('i', responseAlert).removeClass('i-exclamation-lg');
                         $('i', responseAlert).addClass('bi-check-circle-fill');
 
-                        $(this).reset();
+                        $("#vehicleFormCreate")[0].reset();
                         $('#response').html('Vehículo creado con éxito');
                     },
                     error: function () {

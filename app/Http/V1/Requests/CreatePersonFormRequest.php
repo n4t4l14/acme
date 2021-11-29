@@ -28,7 +28,6 @@ class CreatePersonFormRequest extends FormRequest
      */
     public function rules()
     {
-        //dd($this->request->all());
         return [
             'data.attributes.identification_number' => 'required',
             'data.attributes.first_name' => 'required',

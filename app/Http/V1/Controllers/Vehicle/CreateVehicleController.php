@@ -35,21 +35,35 @@ class CreateVehicleController extends ApiV1Controller
     public function __invoke(CreateVehicleFormRequest $request): JsonResponse
     {
         try {
+            $data = $request->get('data')['attributes'];
             $vehicle = $this->createVehicleUseCase->create(
-                $request->get('plate'),
-                $request->get('color'),
-                $request->get('brand'),
-                $request->get('type'),
-                $request->get('driver_id'),
-                $request->get('owner_id')
+                $data['plate'],
+                $data['color'],
+                $data['brand'],
+                $data['type'],
+                $data['driver_id'],
+                $data['owner_id'],
             );
 
             return response()->json([
-                'data' => $vehicle->toArray()
+                'data' => [
+                    'type' => 'person',
+                    'id' => (string)$vehicle->id,
+                    'attributes' => [
+                        'plate' => $vehicle->plate,
+                        'color' => $vehicle->color,
+                        'brand' => $vehicle->brand,
+                        'type' => $vehicle->type,
+                        'driver_id' => $vehicle->driver_id,
+                        'owner_id' => $vehicle->owner_id,
+                        'created_at' => $vehicle->created_at,
+                        'updated_at' => $vehicle->updated_at,
+                    ]
+                ]
             ]);
         } catch (CreateVehicleException $exception) {
             return $this->responseCustomError($exception);
-        }  catch (Throwable $exception) {
+        } catch (Throwable $exception) {
             return $this->responseGeneralError($exception);
         }
     }
