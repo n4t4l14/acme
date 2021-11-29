@@ -28,15 +28,17 @@ class CreatePersonFormRequest extends FormRequest
      */
     public function rules()
     {
+        //dd($this->request->all());
         return [
-            'identification_number' => 'required',
-            'first_name' => 'required',
-            'surnames' => 'required',
-            'address' => 'required',
-            'phone_number' => 'required',
-            'city' => 'required',
-            'role' => ['required',
-                        Rule::in(['Conductor', 'Propietario']),
+            'data.attributes.identification_number' => 'required',
+            'data.attributes.first_name' => 'required',
+            'data.attributes.surnames' => 'required',
+            'data.attributes.address' => 'required',
+            'data.attributes.phone_number' => 'required',
+            'data.attributes.city' => 'required',
+            'data.attributes.role' => [
+                'required',
+                Rule::in(['Conductor', 'Propietario']),
             ]
         ];
     }
@@ -47,14 +49,14 @@ class CreatePersonFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'identification_number.required' => 'El numero de identificacion es es obligatorio',
-            'first_name.required' => 'El primer nombre es obligatorio',
-            'surnames.required' => 'Los apellidos son obligatorios',
-            'address.required' => 'La dirección es obligatoria',
-            'phone_number.required' => 'El número de telefono es obligatorio',
-            'city.required' => 'La ciudad es obligatoria',
-            'role.required' => 'El rol es obligatorio',
-            'role.in' => 'El rol debe ser Conductor o Propietario'
+            'data.attributes.identification_number.required' => 'El numero de identificacion es es obligatorio',
+            'data.attributes.first_name.required' => 'El primer nombre es obligatorio',
+            'data.attributes.surnames.required' => 'Los apellidos son obligatorios',
+            'data.attributes.address.required' => 'La dirección es obligatoria',
+            'data.attributes.phone_number.required' => 'El número de telefono es obligatorio',
+            'data.attributes.city.required' => 'La ciudad es obligatoria',
+            'data.attributes.role.required' => 'El rol es obligatorio',
+            'data.attributes.role.in' => 'El rol debe ser Conductor o Propietario'
         ];
 
     }

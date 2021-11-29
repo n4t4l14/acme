@@ -33,19 +33,35 @@ class CreatePersonController extends ApiV1Controller
     public function __invoke(CreatePersonFormRequest $request): JsonResponse
     {
         try {
+            $data = $request->get('data')['attributes'];
             $person = $this->createPersonUseCase->create(
-                $request->get('identification_number'),
-                $request->get('first_name'),
-                $request->get('second_name'),
-                $request->get('surnames'),
-                $request->get('address'),
-                $request->get('phone_number'),
-                $request->get('city'),
-                $request->get('role'),
+                $data['identification_number'],
+                $data['first_name'],
+                $data['second_name'],
+                $data['surnames'],
+                $data['address'],
+                $data['phone_number'],
+                $data['city'],
+                $data['role'],
             );
 
             return response()->json([
-                'data' => $person->toArray()
+                'data' => [
+                    'type' => 'person',
+                    'id' => (string)$person->id,
+                    'attributes' => [
+                        'identification_number' => $person->identification_number,
+                         'first_name' => $person->first_name,
+                         'second_name' => $person->second_name,
+                         'surnames' => $person->surnames,
+                         'address' => $person->address,
+                         'phone_number' => $person->phone_number,
+                         'city' => $person->city,
+                         'role' => $person->role,
+                         'created_at' => $person->created_at,
+                         'updated_at' => $person->updated_at,
+                    ]
+                ]
             ]);
         } catch (Throwable $exception) {
             return $this->responseGeneralError($exception);
