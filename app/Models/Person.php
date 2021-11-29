@@ -21,5 +21,16 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Person extends Model
 {
+    /**
+     * @var string
+     */
     protected $table = 'person';
+
+    /**
+     * @return string
+     */
+    public function getFullNameAttribute(): string
+    {
+        return $this->first_name . ' ' . $this->second_name . ' ' . $this->surnames;
+    }
 }

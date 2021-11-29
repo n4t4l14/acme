@@ -3,6 +3,7 @@
 namespace App\Repositories\Contracts;
 
 use App\Models\Vehicle;
+use Illuminate\Support\Collection;
 
 /**
  * Interface VehicleRepositoryInterface
@@ -21,4 +22,9 @@ interface VehicleRepositoryInterface
      * @return Vehicle
      */
     public function findByPlate(string $plate): ?Vehicle;
+
+    /**
+     * @return Collection
+     */
+    public function getVehiclesWithDriverAndOwner(): Collection;
 }

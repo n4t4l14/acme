@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Vehicle;
 use App\Repositories\Contracts\VehicleRepositoryInterface;
+use Illuminate\Support\Collection;
 
 /**
  * Class VehicleRepositoryEloquent
@@ -39,5 +40,13 @@ class VehicleRepositoryEloquent implements VehicleRepositoryInterface
     public function findByPlate(string $plate): ?Vehicle
     {
         return $this->vehicle->where('plate', '=', $plate)->first();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getVehiclesWithDriverAndOwner(): Collection
+    {
+       return $this->vehicle->get();
     }
 }

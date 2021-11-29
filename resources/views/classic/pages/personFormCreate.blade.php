@@ -100,7 +100,7 @@
                             "address": $('#address').val(),
                             "phone_number": $('#phone_number').val(),
                             "city": $('#city').val(),
-                            "role": $('input[name="role"]').val()
+                            "role": $('input[name="role"]:checked').val()
                         }
                     }
                 };

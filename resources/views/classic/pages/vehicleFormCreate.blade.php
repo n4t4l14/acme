@@ -1,4 +1,4 @@
-    |@extends('classic.layouts.generalLayout')
+@extends('classic.layouts.generalLayout')
 
 @section('page_content')
     <h3 class="text-muted">Crear Vehículo <i class="bi bi-truck text-primary"></i></h3>
@@ -47,7 +47,9 @@
                         <small class="text-danger">*</small> Conductor
                     </label>
                     <select class="form-select" id="driver_id" required>
-                        <option value="7">Miguel</option>
+                        @foreach($drivers as $driver)
+                            <option value="{{$driver->id}}">{{$driver->full_name}}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -56,7 +58,9 @@
                         <small class="text-danger">*</small> Propietario
                     </label>
                     <select class="form-select" id="owner_id" required>
-                        <option value="6">Julieth</option>
+                        @foreach($owners as $owner)
+                            <option value="{{$owner->id}}">{{$owner->full_name}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
