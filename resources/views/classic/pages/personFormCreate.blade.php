@@ -1,7 +1,7 @@
 @extends('classic.layouts.generalLayout')
 
 @section('page_content')
-    <h3 class="text-muted">Crear Conducto o Propietario <i class="bi bi-person-plus text-primary"></i></h3>
+    <h3 class="text-muted">Crear Conductor o Propietario <i class="bi bi-person-plus text-primary"></i></h3>
     <hr>
     <form action="{{route('api.v1.person.post')}}" id="personFormCreate" method="POST">
         <div class="row justify-content-evenly">
