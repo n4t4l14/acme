@@ -4,7 +4,9 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Vehicle;
 use App\Repositories\Contracts\VehicleRepositoryInterface;
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class VehicleRepositoryEloquent
@@ -47,6 +49,17 @@ class VehicleRepositoryEloquent implements VehicleRepositoryInterface
      */
     public function getVehiclesWithDriverAndOwner(): Collection
     {
-       return $this->vehicle->get();
+        $columns = [
+            'id',
+            'plate',
+            'brand',
+            'driver_id',
+            DB::raw('(SELECT CONCAT(person.first_name, \' \', person.surnames) FROM person WHERE id = vehicle.driver_id) AS driver_complete_name'),
+            'owner_id',
+            DB::raw('(SELECT CONCAT(person.first_name, \' \', person.surnames) FROM person WHERE id = vehicle.owner_id) AS owner_complete_name'),
+        ];
+        $query = $this->vehicle->select($columns);
+
+       return $query->get();
     }
 }

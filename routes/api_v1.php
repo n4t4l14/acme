@@ -2,6 +2,7 @@
 
 use App\Http\V1\Controllers\Person\CreatePersonController;
 use App\Http\V1\Controllers\Vehicle\CreateVehicleController;
+use App\Http\V1\Controllers\Vehicle\GetVehiclesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,9 +32,7 @@ Route::group(['prefix' => 'vehicle'], function () {
 
     Route::get('report', [
         'as' => 'api.v1.vehicle.report',
-        'uses' => function () {
-            return '{"data":[{"vehicle":{"id":"1","plate":"JNW789","brand":"RENOLT"},"driver":{"id":"1","complete_name":"MIGUEL CASTAÑEDA"},"owner":{"id":"2","complete_name":"JULIETH CASTRO"}},{"vehicle":{"id":"2","plate":"TYI782","brand":"MAZDA"},"driver":{"id":"8","complete_name":"PABLO FERNANDO CASTRO PULIDO"},"owner":{"id":"2","complete_name":"ANGIE MEMELA XOXOXO"}}]}';
-        }
+        'uses' => GetVehiclesController::class
     ]);
 });
 
