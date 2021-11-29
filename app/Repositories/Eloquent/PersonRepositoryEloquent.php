@@ -28,4 +28,5 @@ class PersonRepositoryEloquent implements PersonRepositoryInterface
         $person->save();
         return $person;
     }
+
 }

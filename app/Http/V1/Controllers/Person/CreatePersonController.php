@@ -48,7 +48,6 @@ class CreatePersonController extends ApiV1Controller
                 'data' => $person->toArray()
             ]);
         } catch (Throwable $exception) {
-            dd($exception);
             return $this->responseGeneralError($exception);
         }
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\V1\Controllers\Person\CreatePersonController;
+use App\Http\V1\Controllers\Vehicle\CreateVehicleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,9 +26,7 @@ Route::group(['prefix' => 'vehicle'], function () {
 
     Route::post('/', [
         'as' => 'api.v1.vehicle.post',
-        'uses' => function () {
-            echo 'hola mundo desde post';
-        }
+        'uses' => CreateVehicleController::class
     ]);
 
     Route::get('report', [
