@@ -18,13 +18,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'vehicle'], function () {
-    Route::get('/{vehicle_id}', [
-        'as' => 'api.v1.vehicle.get',
-        'uses' => function () {
-            echo 'hola mundo desde get';
-        }
-    ])->where('vehicle_id', '[0-9]+');;
-
     Route::post('/', [
         'as' => 'api.v1.vehicle.post',
         'uses' => CreateVehicleController::class
@@ -37,13 +30,6 @@ Route::group(['prefix' => 'vehicle'], function () {
 });
 
 Route::group(['prefix' => 'person'], function () {
-    Route::get('/', [
-        'as' => 'api.v1.person.get',
-        'uses' => function () {
-            echo 'hola mundo desde get person';
-        }
-    ]);
-
     Route::post('/', [
         'as' => 'api.v1.person.post',
         'uses' => CreatePersonController::class

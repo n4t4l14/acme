@@ -62,4 +62,14 @@ class VehicleRepositoryEloquent implements VehicleRepositoryInterface
 
        return $query->get();
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function find(string $vehicleID): Vehicle
+    {
+        $model = $this->vehicle->find($vehicleID);
+        $model->load(['driver', 'owner']);
+        return $model;
+    }
 }

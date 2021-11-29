@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PersonFormCreateController;
+use App\Http\Controllers\VehicleDetailsController;
 use App\Http\Controllers\VehicleFormCreateController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,11 @@ Route::get('/', [
     'as' => 'web.dashboard',
     'uses' => DashboardController::class
 ]);
+
+Route::get('/vehicle/{vehicle_id}', [
+    'as' => 'web.vehicle.details',
+    'uses' => VehicleDetailsController::class
+])->where('vehicle_id', '[0-9]+');;
 
 Route::get('vehicle', [
     'as' => 'web.vehicle.formCreate',

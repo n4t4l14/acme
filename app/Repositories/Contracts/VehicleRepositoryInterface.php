@@ -27,4 +27,10 @@ interface VehicleRepositoryInterface
      * @return Collection
      */
     public function getVehiclesWithDriverAndOwner(): Collection;
+
+    /**
+     * @param string $vehicleID
+     * @return Vehicle
+     */
+    public function find(string $vehicleID): Vehicle;
 }

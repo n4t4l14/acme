@@ -55,7 +55,7 @@
                     {
                         "data": null,
                         "render": function (data) {
-                            let routeBase = "{{route('api.v1.vehicle.get', ['vehicle_id' => '%vehicleId%'])}}";
+                            let routeBase = "{{route('web.vehicle.details', ['vehicle_id' => '%vehicleId%'])}}";
                             route = routeBase.replace('%vehicleId%', data.vehicle.id);
                             return `<a href="${route}"><i class="bi bi-hand-index"></i></a>`
                         }
